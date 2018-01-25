@@ -9,9 +9,12 @@
   </view>
   <button type='primary' class='btn_scan' bindtap='onScanClick'>Scan</button>
   <text class='.scan_result_title'>扫描结果</text>
+  
+  
 
-
-
+  
+  
+  
   <view wx:if="{{!bleConnSuccess}}" class='scan_result' wx:for="{{bleChips}}" wx:key="{{index}}">
      <text class="result_text">{{index}}-{{item.name}}-{{item.deviceId}}</text>
     <button class="con_style"size="mini" type="primary" bindtap='onConnBle' data-item='{{item}}'>连接</button>
@@ -24,6 +27,15 @@
   </view>
 </view>
 
+<!--modify 1/25-->
+<view wx:if="{{bleConnSuccess}}">
+  <view class="data_box">
+    <view classs="senddata">
+      <input class="input" type="text" placeholder="请输入数据...."/>
+      <button size="mini" type="primary">add</button>
+    </view>
+   </view>
+  </view>
 
 <!--modify 1/24  Disconnect-->
 <view wx:if="{{bleConnSuccess}}" > 

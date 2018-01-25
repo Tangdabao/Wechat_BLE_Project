@@ -57,3 +57,15 @@
   font-size: 12px;
   display: block;
 }
+.input{
+ border: 1px solid #ccc;
+ padding: 5px;
+ border-radius: 5px;
+}
+.data_box{
+   padding: 20px;
+}
+.senddata
+{
+  display: fiex;
+}
