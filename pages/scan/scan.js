@@ -12,7 +12,7 @@ Page({
     bleConnSuccess:false,
     bleNotifyData:"未读取数据",
     //modify
-    bleWriteData:"请写入数据，少于20字节",
+    bleWriteData:"",
     bleDiscon:"断开蓝牙设备",
     DisAsapter: "断开蓝牙适配器"
 
@@ -200,8 +200,8 @@ Page({
  */
   onbleDisconClick: function () {
     var that_1 = this;
+    let self = this
     wx.closeBLEConnection({
-
       deviceId: that_1.blue_data.device_id,
       success: function (res) {
         that_1.setData({
@@ -326,10 +326,37 @@ Page({
     /**
    *  写特性
    */
+  changeinputval(ev) {
+    this.setData({
+      bleWriteData: ev.detail.value
+    });
 
+  },
+  
+  add_data: function (deviceId) {
+    console.log(this.data.bleWriteData);
+    this.setData({
+      bleConnSuccess: true
+    });
+    var that_1 = this;
 
-
-
+    var buf = new ArrayBuffer(16)
+    var dataView = new DataView(buf)
+    var arr = this.data.bleWriteData.split(",");
+    console.log(arr);
+    for (var i = 0; i < arr.length; i++) {
+          dataView.setInt8(i, arr[i]);
+        }
+    wx.writeBLECharacteristicValue({
+      deviceId: that_1.blue_data.device_id,
+      serviceId: 'D973F2E0-B19E-11E2-9E96-0800200C9A66',
+      characteristicId: 'D973F2E2-B19E-11E2-9E96-0800200C9A66',
+      value: buf,//this.data.bleWriteData,
+      success: function (res) {
+        console.log(res);
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

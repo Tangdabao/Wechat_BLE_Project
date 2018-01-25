@@ -57,15 +57,33 @@
   font-size: 12px;
   display: block;
 }
-.input{
- border: 1px solid #ccc;
- padding: 5px;
- border-radius: 5px;
-}
+
+
+/* Write */
 .data_box{
    padding: 20px;
 }
 .senddata
 {
-  display: fiex;
+  display: flex;
+
 }
+.input{
+ border: 1px solid #ccc;
+ padding: 5px;
+ border-radius: 5px;
+}
+.Place-input{
+  font-size: 18px;
+  color: salmon;  
+}
+.bleDiscon{
+
+  float: left;
+}
+.DisAdapter
+{
+  float: right;
+}
+
+
