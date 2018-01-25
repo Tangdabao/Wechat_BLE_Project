@@ -1,0 +1,39 @@
+<!--pages/scan/scan.wxml-->
+<scroll-view>
+<view class='scan_view'>
+  <view class="result">
+    <text class="result_text">蓝牙状态监听：{{bleStatus}}</text>
+    <text class="result_text">蓝牙初始化：{{bleAdapterStatus}}</text>
+    <text class="result_text">蓝牙连接状态：{{bleConnSuccess}}</text>
+    <text class="result_text">当前连接的设备：{{bleChipInfo.name}}-{{bleChipInfo.deviceId}}</text>
+  </view>
+  <button type='primary' class='btn_scan' bindtap='onScanClick'>Scan</button>
+  <text class='.scan_result_title'>扫描结果</text>
+
+
+
+  <view wx:if="{{!bleConnSuccess}}" class='scan_result' wx:for="{{bleChips}}" wx:key="{{index}}">
+     <text class="result_text">{{index}}-{{item.name}}-{{item.deviceId}}</text>
+    <button class="con_style"size="mini" type="primary" bindtap='onConnBle' data-item='{{item}}'>连接</button>
+  </view>
+
+  <view wx:if="{{bleConnSuccess}}" class='notify_result'>
+  <text>notify data: </text>
+  <!--modify-->
+  <text class='notify_result_data'>value="{{bleNotifyData}}"</text>
+  </view>
+</view>
+
+
+<!--modify 1/24  Disconnect-->
+<view wx:if="{{bleConnSuccess}}" > 
+   <button class='bleDiscon' type='primary' size='mini'  bindtap='onbleDisconClick'>断开</button>
+</view>
+
+<!--modify 1/24  Disader-->
+<view wx:if="{{bleConnSuccess}}" > 
+   <button class='DisAdapter' type='primary' size='mini'  bindtap='onDisAdapterClick'>断开适配器</button>
+</view>
+
+
+</scroll-view>
